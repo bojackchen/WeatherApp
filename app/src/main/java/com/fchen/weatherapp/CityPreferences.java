@@ -12,7 +12,7 @@ public class CityPreferences {
     }
 
     public String getCity() {
-        return preferences.getString("city", "Hangzhou");
+        return preferences.getString("city", "Hongkong");
     }
 
     public void setCity(String city) {

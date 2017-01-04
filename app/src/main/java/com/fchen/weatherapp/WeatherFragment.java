@@ -1,5 +1,6 @@
 package com.fchen.weatherapp;
 
+import android.graphics.Typeface;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,8 @@ import java.util.Locale;
 
 public class WeatherFragment extends Fragment {
 
+    Typeface weatherFont;
+
     TextView cityField;
     TextView updatedField;
     TextView detailsField;
@@ -33,6 +36,7 @@ public class WeatherFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        weatherFont = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weathericon.ttf");
         updateWeatherData(new CityPreferences(getActivity()).getCity());
     }
 
@@ -45,6 +49,7 @@ public class WeatherFragment extends Fragment {
         temperatureField = (TextView)rootView.findViewById(R.id.temperaturefield);
         weatherIcon = (TextView)rootView.findViewById(R.id.weathericon);
 
+        weatherIcon.setTypeface(weatherFont);
         return rootView;
     }
 
@@ -126,5 +131,9 @@ public class WeatherFragment extends Fragment {
             }
         }
         weatherIcon.setText(icon);
+    }
+
+    public void changeCity(String city){
+        updateWeatherData(city);
     }
 }
